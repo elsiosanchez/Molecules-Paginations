@@ -2,67 +2,43 @@
   <el-card>
     <div class="example-pagination-block">
       <div class="example-demonstration">When you have few pages</div>
-      <el-pagination layout="prev, pager, next" :total="50" />
-    </div>
-    <div class="example-pagination-block">
-      <div class="example-demonstration">When you have more than 7 pages</div>
-      <el-pagination layout="prev, pager, next" :total="1000" />
+      <el-pagination
+        v-model:current-page="currentPagePaginations"
+        :background="background"
+        :hide-on-single-page="hide"
+        layout="prev, pager, next"
+        :total="totalPage"
+        :disabled="disabled"
+      />
     </div>
   </el-card>
 </template>
 <script lang="ts" setup>
+import { computed } from 'vue';
 const props = defineProps({
-  showClear: {
+  background: {
     type: Boolean,
-    required: true,
+    default: true,
   },
-  showClose: {
-    type: Boolean,
-    required: true,
-  },
-  showCheck: {
-    type: Boolean,
-    required: true,
-  },
-  actionClear: {
-    type: Function,
-    default: (clean) => {
-      console.info('Implement the Clean Method', clean);
-    },
-  },
-  actionClose: {
-    type: Function,
-    default: (close) => {
-      console.info('Implement the Close Method', close);
-    },
-  },
-  actionCheck: {
-    type: Function,
-    default: (check) => {
-      console.info('Implement the Check Method', check);
-    },
-  },
-  disabledClear: {
+  hide: {
     type: Boolean,
     default: false,
   },
-  disabledClose: {
+  totalPage: {
+    type: Number,
+    default: 50,
+  },
+  disabled: {
     type: Boolean,
     default: false,
   },
-  disabledCheck: {
-    type: Boolean,
-    default: false,
+  currentPage: {
+    type: Number,
+    default: 1,
   },
-  textAling: {
-    type: String,
-    required: false,
-    default: 'Right',
-  },
-  slotsLeft: String,
-  slotsRight: String,
-  slotsAlingLeft: String,
-  slotsAlingRight: String,
+});
+const currentPagePaginations = computed(() => {
+  return props.currentPage;
 });
 </script>
 

@@ -1,3 +1,3 @@
 <template>
-  <Paginations />
+  <molecula-Paginations />
 </template>
