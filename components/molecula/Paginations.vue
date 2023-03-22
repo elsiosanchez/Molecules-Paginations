@@ -1,12 +1,12 @@
 <template>
   <el-card>
     <div class="example-pagination-block">
-      <div class="example-demonstration">When you have few pages</div>
       <el-pagination
-        v-model:current-page="currentPagePaginations"
+        :default-current-page="currentPagePaginations"
+        :page-size="pagerSize"
         :background="background"
         :hide-on-single-page="hide"
-        layout="prev, pager, next"
+        :layout="layout"
         :total="totalPage"
         :disabled="disabled"
       />
@@ -26,7 +26,7 @@ const props = defineProps({
   },
   totalPage: {
     type: Number,
-    default: 50,
+    default: 100,
   },
   disabled: {
     type: Boolean,
@@ -34,7 +34,15 @@ const props = defineProps({
   },
   currentPage: {
     type: Number,
-    default: 1,
+    default: 3,
+  },
+  pagerSize: {
+    type: Number,
+    default: 10,
+  },
+  layout: {
+    type: String,
+    default: 'total, prev, pager, next',
   },
 });
 const currentPagePaginations = computed(() => {

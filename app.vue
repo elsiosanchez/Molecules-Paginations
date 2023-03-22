@@ -1,3 +1,3 @@
 <template>
-  <molecula-Paginations />
+  <molecula-Paginations :background="true" />
 </template>
